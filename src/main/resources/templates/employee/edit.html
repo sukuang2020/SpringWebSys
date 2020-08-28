@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="/common/layout">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Update User</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div layout:fragment="content">
+	<div class="container my-5">
+		<h3>Update employee</h3>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-8">
+					<form action="#"
+						th:action="@{/employee/update/{id}(id=${emp.id})}"
+						th:object="${emp}" method="post">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="name" class="col-form-label">Name</label> <input
+									type="text" th:field="*{name}" class="form-control" id="name"
+									placeholder="Name"> <span
+									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="email" class="col-form-label">Email</label>
+								<input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">
+								<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="phoneNo" class="col-form-label">Phone No</label>
+								<input type="text" th:field="*{phoneNo}" class="form-control" id="phoneNo" placeholder="phoneNo">
+
+							</div>
+
+							<div class="form-group col-md-8">
+								<input type="submit" class="btn btn-primary"
+									value="Update Student">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

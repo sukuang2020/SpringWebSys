@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="/common/layout">
+
+<head>
+<title>マイホーム</title>
+<script type="text/javascript" th:src="@{/js/myprofile.js}"></script>
+</head>
+<body>
+	<div layout:fragment="content">
+		<br> <br> Welcome <span
+			sec:authentication="principal.username">User</span> <br> <a
+			th:href="@{/admin/role/}">権限マスタ画面</a> <br> <a
+			th:href="@{/adminap/user/}">ユーザー管理画面</a> <br> <a
+			th:href="@{/adminap/userrole/}">ユーザー権限管理画面</a> <a
+			th:href="@{/employee}">社員管理画面</a> <br> APIテスト <br> <br>
+
+        <a th:href="@{/demo/clear}">Clear</a><br>
+		<a th:href="@{/demo/cache}">1.Spring Cache ToDo</a><br>
+        <a th:href="@{/demo/exp}">2.異常処理</a><br>
+        <a th:href="@{/demo/jdbctemplate}">JdbcTemplate Demo</a><br>
+        <a th:href="@{/demo/jedis}">Jedis Demo</a><br>
+        <a th:href="@{/demo/jparepository}">Jpa</a><br>
+        <a th:href="@{/demo/mongo/mongotemplate/write}">Mongo MongoTemplate Write</a><br>
+        <a th:href="@{/demo/mogon/mongotemplate/readtype}">Mongo MongoTemplate Read</a><br>
+        <a th:href="@{/demo/mogon/repo/readtype}">Mongo MongoRepository</a><br>
+        <a th:href="@{/demo/mogon/repo/readtype}">Mongo 持久化？</a><br>
+        <a th:href="@{/demo/mybatis}">Mybatis</a><br>
+        <a th:href="@{/demo/redis/cache}">Rediscache</a><br>
+        <a th:href="@{/adminap/user/}">Aspect</a><br>
+
+		<table class="table mytable">
+			<tr>
+				<th>msg</th>
+			</tr>
+			<tr th:each="info : ${infos}">
+				<td th:text="${info.msg}"></td>
+			</tr>
+		</table>
+
+	</div>
+
+
+
+</body>
+
+</html>

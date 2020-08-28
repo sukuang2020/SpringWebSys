@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">SpringBootWebDemo</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<link rel="stylesheet"
+	th:href="@{/assets/bootstrap-4.5.0/css/bootstrap.min.css}">
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/assets/bootstrap-4.5.0/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" th:href="@{/css/APStyle.css}" />
+
+<style>
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+</style>
+</head>
+
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#" th:href="@{/}">ホーム</a>
+		<button class="navbar-toggler d-lg-none" type="button"
+			data-toggle="collapse" data-target="#navbarsExampleDefault"
+			aria-controls="navbarsExampleDefault" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/myprofile}">Profile</a></li>
+				<li class="nav-item"><th:block th:if="${msg} != null">
+						<a class="nav-link" th:href="@{/login}"><span
+							class="glyphicon glyphicon-log-in"></span>ログイン</a>
+					</th:block> <th:block th:if="${msg} == null">
+						<th:block
+							th:switch="${#authorization.expression('isAnonymous()')}">
+							<a class="nav-link" th:case="${true}" th:href="@{/login}"><span
+								class="glyphicon glyphicon-log-in"></span>ログイン</a>
+							<a class="nav-link" th:case="${false}" th:href="@{/logout}"><span
+								class="glyphicon glyphicon-log-out"></span>ログアウト</a>
+						</th:block>
+					</th:block></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="col-sm-3 d-none d-sm-block bg-light sidebar">
+				<ul class="nav nav-pills flex-column">
+					<li class="nav-item"><a class="nav-link" href="#">Overview
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Export</a></li>
+				</ul>
+
+				<ul class="nav nav-pills flex-column">
+					<li class="nav-item"><a class="nav-link" href="#">Nav item</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Nav item
+							again</a></li>
+				</ul>
+			</nav>
+			<div class="mainbox">
+				<section layout:fragment="content"></section>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

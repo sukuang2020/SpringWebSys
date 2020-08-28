@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="/common/layout">
+
+<head>
+<title>権限エラー</title>
+<script type="text/javascript" th:src="@{/js/myprofile.js}"></script>
+</head>
+<body>
+	<div layout:fragment="content">
+        <h1 th:text="#{ERROR_MSG_0001}"></h1>
+	</div>
+</body>
+</html>

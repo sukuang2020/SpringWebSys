@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/common/layout">
+
+<head>
+<title>Coffee</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8"
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user.js}"></script>
+
+</head>
+<style>
+td.highlight {
+	font-weight: bold;
+	color: blue;
+}
+</style>
+<body>
+	<div layout:fragment="content">
+		<h1>Users</h1>
+		<table class="table mytable">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="user : ${page.content}">
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.email}"></td>
+				<th><a class="nav-link" th:href="@{/adminap/user/{id}(id=*{user.id})}"><i
+						class="fas fa-edit"></i>編集</a>
+
+                </th>
+				<th>
+					<form th:action="@{/adminap/user/{id}(id=*{user.id})}" th:method="delete">
+						<input class="btn btn-danger" type="submit" value="削除" />
+					</form>
+				</th>
+			</tr>
+		</table>
+
+		<!-- Thymeleaf paging -->
+
+		<div class="pagination-div">
+			<span th:if="${page.hasPrevious()}"> <a
+				th:href="@{/adminap/user(page=${page.number-1},size=${page.size})}">Previous</a>
+			</span>
+			<th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+				<span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+				<span th:unless="${page.number == i}"> <a
+					th:href="@{/adminap/user(page=${i},size=${page.size})}">[[${i}+1]]</a>
+				</span>
+			</th:block>
+			<span th:if="${page.hasNext()}"> <a
+				th:href="@{/adminap/user(page=${page.number+1},size=${page.size})}">Next</a>
+			</span>
+		</div>
+	</div>
+
+</body>
+
+</html>

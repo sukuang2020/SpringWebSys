@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/common/layout">
+
+<head>
+<title>ユーザー管理</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8"
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user.js}"></script>
+
+</head>
+<style>
+td.highlight {
+	font-weight: bold;
+	color: blue;
+}
+</style>
+<body>
+	<div layout:fragment="content">
+		<h1>Users</h1>
+		<table class="table mytable" >
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.email}"></td>
+					<td><a href="" class="btn btn-primary"><i
+							class="fas fa-user-edit ml-2"></i></a></td>
+					<td><a href="#" class="btn btn-primary"><i
+							class="fas fa-user-times ml-2"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>
